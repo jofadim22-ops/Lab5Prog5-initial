@@ -1,0 +1,15 @@
+info
+help
+clear
+insert null
+show
+update id
+sum_of_distance
+count_by_distance 50.0
+print_field_descending_distance
+remove_greater_key null
+remove_key null
+clear
+info
+save
+exit

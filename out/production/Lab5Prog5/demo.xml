@@ -1,0 +1,14 @@
+<routes>
+    <entry key="1">
+        <route>
+            <id>1</id>
+            <name>Route 1</name>
+            <coordinates>
+                <x>500.0</x>
+                <y>100.0</y>
+            </coordinates>
+            <creationDate>2023-10-20T12:34:56Z</creationDate>
+            <distance>100</distance>
+        </route>
+    </entry>
+</routes>

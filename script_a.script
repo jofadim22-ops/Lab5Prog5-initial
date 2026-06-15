@@ -1,0 +1,3 @@
+# Script A - calls Script B
+info
+execute_script script_b.script

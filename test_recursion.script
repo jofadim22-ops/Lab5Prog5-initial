@@ -1,0 +1,6 @@
+# This script tests recursion prevention
+# It tries to call itself, which should be blocked
+
+info
+execute_script test_recursion.script
+show

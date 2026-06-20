@@ -19,20 +19,21 @@ public class RemoveLower extends AbstractCommand {
     public void execute(String[] args, CollectionManager manager, ConsoleInputReader inputReader)
             throws CommandException, IOException, InvalidDataException {
 
-        System.out.println("Enter route to compare against:");
-        Route threshold = inputReader.readRoute(false);
+        System.out.println("Enter coordinates x [100]:");
+        String xInput = inputReader.readLine().trim();
+        int x = xInput.isEmpty() ? 100 : Integer.parseInt(xInput);
 
-        List<Integer> toRemove = new ArrayList<>();
-        for (Route route : manager.getAll()) {
-            if (route != null && route.compareTo(threshold) < 0) {
-                toRemove.add(route.getId());
-            }
-        }
+        System.out.println("Enter coordiantes y [200]:");
+        String yInput = inputReader.readLine().trim();
+        int y = yInput.isEmpty() ? 200 : Integer.parseInt(yInput);
 
-        for (Integer id : toRemove) {
-            manager.remove(id);
-        }
+        System.out.println("Enter diatance [50.5]:");
+        String distInput = inputReader.readLine().trim();
+        float distance = distInput.isEmpty() ? 50.5f : Float.parseFloat(distInput);
 
-        System.out.println("Remove " + toRemove.size() + " elements");
+        int removedCount = manager.removeGreaterByCriteria(x, y, distance);
+        System.out.println("Removed " + removedCount + " elements");
+
+
     }
 }

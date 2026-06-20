@@ -1,10 +1,12 @@
 package managers;
 
+import model.Coordinates;
 import model.Route;
 import utils.XmlFileHandler;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.Key;
 import java.util.*;
 import javax.xml.stream.XMLStreamException;
 
@@ -98,5 +100,81 @@ public class CollectionManager {
 
     public Hashtable<Integer, Route> getCollection() {
         return collection;
+    }
+
+    public int removeGreaterByCriteria(int x, int y, float distance) {
+        List<Integer> KeysToRemove = new ArrayList<>();
+
+        for (Map.Entry<Integer, Route> entry : collection.entrySet()) {
+            Route route = entry.getValue();
+
+            if (route.getDistance() != null && route.getDistance() > distance) {
+                KeysToRemove.add(entry.getKey());
+            }
+        }
+
+        for (Integer Key : KeysToRemove) {
+            collection.remove(Key);
+        }
+
+        return KeysToRemove.size();
+    }
+
+    public int removeLowerByCriteria(int x, int y, float distance) {
+        List<Integer> KeysToRemove = new ArrayList<>();
+
+        for (Map.Entry<Integer, Route> entry : collection.entrySet()) {
+            Route route = entry.getValue();
+
+            if (route.getDistance() != null && route.getDistance() < distance) {
+                KeysToRemove.add(entry.getKey());
+            }
+        }
+
+        for (Integer Key : KeysToRemove) {
+            collection.remove(Key);
+        }
+
+        return KeysToRemove.size();
+    }
+
+    public int removeGreaterKey(Integer Key) {
+    if (Key == null) {
+        return 0;
+    }
+
+    List<Integer> KeysToRemove = new ArrayList<>();
+
+    for (Integer k : collection.keySet()) {
+        if (k > Key) {
+            KeysToRemove.add(k);
+        }
+    }
+
+    for (Integer K : KeysToRemove) {
+        collection.remove(K);
+    }
+
+    return KeysToRemove.size();
+    }
+
+    public int removeLowerKey(Integer Key) {
+        if (Key == null) {
+            return 0;
+        }
+
+        List<Integer> KeysToRemove = new ArrayList<>();
+
+        for (Integer K : collection.keySet()) {
+            if (K < Key) {
+                KeysToRemove.add(K);
+            }
+        }
+
+        for (Integer K : KeysToRemove) {
+            collection.remove(K);
+        }
+
+        return KeysToRemove.size();
     }
 }

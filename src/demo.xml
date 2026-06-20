@@ -2,19 +2,16 @@
 <collection>
     <route key="1">
         <id>1</id>
-        <name>TestRoute</name>
-        <coordinates>x:100,y:200</coordinates>
-        <creationDate>1697803496000</creationDate>
+        <name>My Route</name>
+        <coordinates>
+                <x>100</x>
+                <y>200</y>
+        </coordinates>
+        <creationDate>1234567890</creationDate>
         <distance>50.5</distance>
     </route>
-
-    <route key="2">
-        <id>2</id>
-        <name>Route 2</name>
-        <coordinates>x:200,y:-500</coordinates>
-        <creationDate>1697803500000</creationDate>
-        <distance>250.5</distance>
-        <from>x:10.0,y:20.0,z:5,name:Start Point</from>
-        <to>x:30.0,y:40,z:10,name:End Point</to>
-    </route>
 </collection>
+
+
+
+

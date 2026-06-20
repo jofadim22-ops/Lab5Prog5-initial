@@ -62,9 +62,10 @@ public class Route implements Comparable<Route>, Serializable {
     }
 
     public void setId(Integer id) {
-        if (id == null || id <= 0) {
-            throw new IllegalArgumentException("Route ID must be non-null and > 0");
+        if (id == null) {
+            throw new IllegalArgumentException("Route ID must be non-null");
         }
+
         this.id = id;
     }
 

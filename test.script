@@ -1,18 +1,18 @@
-# Test Script for Route Collection Manager
-# This script tests all major commands
-
-info
-help
 clear
-insert null
+insert 1
+TestRoute1
+100
+200
+StartPoint
+EndPoint
+50.5
+insert 2
+TestRoute2
+300
+400
+50.0
 show
-update id
-sum_of_distance
-count_by_distance 50.0
-print_field_descending_distance
-remove_greater_key null
-remove_key null
-clear
 info
 save
 exit
+

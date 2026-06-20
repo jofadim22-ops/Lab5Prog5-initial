@@ -52,7 +52,7 @@ public class CommandExecutor {
         }
     }
 
-    private void processCommand(String commandLine, boolean isScript) {
+    public void processCommand(String commandLine, boolean isScript) {
         try {
             String[] parts = commandLine.trim().split("\\s+", 2);
             String commandName = parts[0].toLowerCase();

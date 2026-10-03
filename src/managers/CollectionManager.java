@@ -42,8 +42,8 @@ public class CollectionManager {
         return true;
     }
 
-    public Route get(Integer Key) {
-        return collection.get(Key);
+    public Route getRoute(Integer id) {
+        return collection.get(id);
     }
 
     public Collection<Route> getAll() {

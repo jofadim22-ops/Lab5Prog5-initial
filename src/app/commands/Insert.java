@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class Insert extends AbstractCommand {
     public Insert() {
-        super("insert", "Add a new element to the collection", "insert <Key>");
+        super("insert", "Add a new element to the collection", "insert", false);
     }
 
     @Override

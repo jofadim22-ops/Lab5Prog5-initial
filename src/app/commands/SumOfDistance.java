@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class SumOfDistance extends AbstractCommand {
     public SumOfDistance() {
-        super("sum_of_distance", "Calculate the sum of distance", " sum_of_distance");
+        super("sum_of_distance", "Calculate the sum of distance", " sum_of_distance", false);
     }
 
     @Override

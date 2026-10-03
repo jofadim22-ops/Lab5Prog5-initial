@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class RemoveGreater extends AbstractCommand {
     public RemoveGreater() {
-        super("remove_greater", "Remove elements greater than the given one", "remove_greater");
+        super("remove_greater", "Remove elements greater than the given one", "remove_greater", false);
     }
 
     @Override

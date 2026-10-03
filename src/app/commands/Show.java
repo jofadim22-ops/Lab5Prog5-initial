@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class Show extends AbstractCommand {
     public Show() {
-        super("show", "Display all elements", "show");
+        super("show", "Display all elements", "show", false);
     }
 
     @Override

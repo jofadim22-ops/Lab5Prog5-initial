@@ -12,7 +12,7 @@ import java.util.List;
 
 public class RemoveLower extends AbstractCommand {
     public RemoveLower() {
-        super("remove_lower", "Remove elements lower than the given one", "remove_lower");
+        super("remove_lower", "Remove elements lower than the given value", "remove_lower", false);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class RemoveLower extends AbstractCommand {
         String yInput = inputReader.readLine().trim();
         int y = yInput.isEmpty() ? 200 : Integer.parseInt(yInput);
 
-        System.out.println("Enter diatance [50.5]:");
+        System.out.println("Enter distance [50.5]:");
         String distInput = inputReader.readLine().trim();
         float distance = distInput.isEmpty() ? 50.5f : Float.parseFloat(distInput);
 

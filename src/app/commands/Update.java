@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Update extends AbstractCommand {
     public Update() {
-        super("update", "Update element by id", "update <id>");
+        super("update", "Update element by id", "update <id>", false);
     }
 
     @Override
@@ -25,47 +25,19 @@ public class Update extends AbstractCommand {
             throw new CommandException("ID must be a valid integer");
         }
 
-        if (!manager.containsKey(id)) {
-            throw new CommandException("No element found with ID " + id);
+        Route oldRoute = manager.getRoute(id);
+        if (oldRoute == null) {
+            throw new CommandException("No element found with ID: " + id);
         }
 
-        Route oldRoute = manager.get(id);
-        System.out.println("Enter new route details (leave empty to keep current value):");
+        System.out.println("Updating Route with ID: " + id);
+        System.out.println("(Leave a field blank to keep its current value: " + oldRoute.toString() + ")");
 
-        Route newRoute = createUpdateRouteFromInput(inputReader, oldRoute);
+        Route newRoute = inputReader.readRoute(true);
 
-        if (oldRoute.getCreationDate() != null) {
-            newRoute.setCreationDate(oldRoute.getCreationDate());
-        }
-
-        newRoute.setId(0);
-
+        newRoute.setId(id);
         manager.put(id, newRoute);
-        System.out.println("Element with ID " + id + " updated successfully");
+
+        System.out.println("Element with ID " + id + " successfully updated.");
+        }
     }
-
-    private Route createUpdateRouteFromInput(ConsoleInputReader inputReader, Route oldRoute)
-            throws IOException, CommandException {
-        Route route = new Route();
-
-        System.out.println("Enter name [" + oldRoute.getName() + "]: ");
-        String nameInput = inputReader.readLine().trim();
-        route.setName(nameInput.isEmpty() ? oldRoute.getName() : nameInput);
-
-        System.out.println("Enter coordinates x [" + oldRoute.getCoordinates().getX() + "]: ");
-        String xInput = inputReader.readLine().trim();
-        Integer x = xInput.isEmpty() ? oldRoute.getCoordinates().getX() : parseInteger(xInput, "X");
-
-        System.out.println("Enter coordinates y [" + oldRoute.getCoordinates().getY() + "]: ");
-        String yInput = inputReader.readLine().trim();
-        Integer y = yInput.isEmpty() ? oldRoute.getCoordinates().getY() : parseInteger(yInput, "Y");
-
-        route.setCoordinates(new Coordinates(x, y));
-
-        System.out.println("Enter distance [" + oldRoute.getDistance() + "]: ");
-        String distInput = inputReader.readLine().trim();
-        route.setDistance(distInput.isEmpty() ? oldRoute.getDistance() : parseFloat(distInput, "Distance"));
-
-        return route;
-    }
-}

@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Save extends AbstractCommand {
     public Save() {
-        super("save", "Save collection to file", "save");
+        super("save", "Save collection to file", "save", false);
     }
 
     @Override

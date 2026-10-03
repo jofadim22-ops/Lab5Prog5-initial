@@ -1,3 +1,0 @@
-# Script B -  calls Script A (creates circular reference)
-help
-execute_script script_a.script

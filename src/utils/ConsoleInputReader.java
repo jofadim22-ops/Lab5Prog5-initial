@@ -27,7 +27,7 @@ public class ConsoleInputReader implements AutoCloseable {
     }
 
 
-    public Route readRoute(boolean forUpdate) throws InvalidDataException {
+    public Route readRoute(boolean interactive) throws InvalidDataException {
         try {
             System.out.println("=== Enter Route Details ===");
 

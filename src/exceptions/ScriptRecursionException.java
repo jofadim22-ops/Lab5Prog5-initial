@@ -1,6 +1,6 @@
 package exceptions;
 
-public class ScriptRecursionException extends Exception {
+public class ScriptRecursionException extends RuntimeException {
     public ScriptRecursionException(String message) {
         super(message);
     }

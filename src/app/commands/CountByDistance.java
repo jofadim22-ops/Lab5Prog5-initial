@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class CountByDistance extends AbstractCommand {
     public CountByDistance() {
-        super("count_by_distance", "Count elements with specific distance", "count_by_distance <distance>");
+        super("count_by_distance", "Count elements with specific distance", "count_by_distance <distance>", false);
     }
 
     @Override

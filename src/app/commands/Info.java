@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Info extends AbstractCommand {
     public Info() {
-        super("info", "Display collection information", "info");
+        super("info", "Display collection information", "info", false);
     }
 
     @Override

@@ -1,66 +1,42 @@
 package app;
 
-import app.commands.CommandRegistry;
-import app.commands.ExecuteScript;
+import app.commands.*;
 import managers.CollectionManager;
 import managers.CommandExecutor;
 import utils.ConsoleInputReader;
 
 public class Main {
-
     public static void main(String[] args) {
-        String filePath = resolveFieldPath(args);
-        if (filePath == null) {
-            System.exit(1);
-        }
-
-        System.out.println("Application starting. Using data file: " + filePath);
-
-        CollectionManager collectionManager;
-        try {
-            collectionManager = new CollectionManager(filePath);
-        } catch (Exception e) {
-            System.err.println("Critical error during initialization; " + e.getMessage());
-            System.exit(2);
-            return;
-        }
-
+        String filePath = args.length > 0 ? args[0] : "demo.xml";
+        CollectionManager collectionManager = new CollectionManager(filePath);
+        ConsoleInputReader inputReader = new ConsoleInputReader();
         CommandRegistry registry = new CommandRegistry();
-        registry.registerAll();
 
-        try (ConsoleInputReader inputReader = new ConsoleInputReader()) {
-            CommandExecutor commandExecutor = new CommandExecutor(collectionManager, inputReader, registry);
+        registry.register("info", new Info());
+        registry.register("help", new Help());
+        registry.register("clear", new Clear());
+        registry.register("insert", new Insert());
+        registry.register("show", new Show());
+        registry.register("update", new Update());
+        registry.register("sum_of_distance", new SumOfDistance());
+        registry.register("count_by_distance", new CountByDistance());
+        registry.register("print_field_descending_distance", new PrintFieldDescendingDistance());
+        registry.register("remove_greater_key", new RemoveGreaterKey());
+        registry.register("remove_key", new RemoveKey());
+        registry.register("save", new Save());
+        registry.register("execute_script", new ExecuteScript());
+        registry.register("exit", new Exit());
 
-            ExecuteScript scriptCmd = (ExecuteScript) registry.get("execute_script");
-            if (scriptCmd != null) {
-                scriptCmd.setExecutor(commandExecutor);
-            }
+        CommandExecutor commandExecutor = new CommandExecutor(
+                registry, collectionManager, new ConsoleInputReader());
 
-            commandExecutor.startInteractiveMode();
 
-        } catch (Exception e) {
-            System.out.println("Critical error in command loop: " + e.getMessage());
-            System.exit(3);
+        ExecuteScript scriptCmd = (ExecuteScript) registry.getCommand("execute_script");
+        if (scriptCmd != null) {
+            scriptCmd.setRegistry(registry);
         }
 
-        System.out.println("Application terminated normally.");
-    }
+        commandExecutor.startInteractiveMode();
 
-    private static String resolveFieldPath(String[] args) {
-        String path = System.getenv("ROUTE_FILE_PATH");
-
-        if (path == null || path.trim().isEmpty()) {
-            if (args.length >= 1 && !args[0].trim().isEmpty()) {
-                path = args[0].trim();
-            }
-        }
-
-        if (path == null || path.trim().isEmpty()) {
-            System.err.println("Error: Data file path not provided.");
-            System.err.println("Usage: java app.Main <filepath>");
-            return null;
-        }
-
-        return path;
     }
 }

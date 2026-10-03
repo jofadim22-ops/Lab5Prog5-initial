@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class Help extends AbstractCommand {
     public Help() {
-        super("help", "Display help information", "help [command]");
+        super("help", "Display help information", "help [command]", false);
     }
 
     @Override

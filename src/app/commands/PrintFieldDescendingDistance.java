@@ -13,7 +13,7 @@ public class PrintFieldDescendingDistance extends AbstractCommand {
     public PrintFieldDescendingDistance() {
         super("print_field_descending_distance",
                 "print distance field values in descending order",
-                "print_field_descending_distance");
+                "print_field_descending_distance", false);
     }
 
     @Override

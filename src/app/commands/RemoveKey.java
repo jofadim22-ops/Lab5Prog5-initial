@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class RemoveKey extends AbstractCommand {
     public RemoveKey() {
-        super("remove_Key", "Remove element by Key", "remove_Key <Key>");
+        super("remove_Key", "Remove element by Key", "remove_Key <Key>", false);
     }
 
     @Override

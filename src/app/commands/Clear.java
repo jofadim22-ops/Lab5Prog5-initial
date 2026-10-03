@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Clear extends AbstractCommand {
     public Clear() {
-        super("clear", "Clear the collection", "clear");
+        super("clear", "Clear the collection", "clear", false);
     }
 
     @Override

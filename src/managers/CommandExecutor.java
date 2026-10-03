@@ -5,6 +5,7 @@ import app.commands.CommandRegistry;
 import exceptions.ScriptRecursionException;
 import utils.ConsoleInputReader;
 
+import java.rmi.registry.Registry;
 import java.util.Scanner;
 
 public class CommandExecutor {
@@ -37,8 +38,8 @@ public class CommandExecutor {
         }
 
         try {
-             command.execute(commandArgs, collectionManager, inputReader);
-             return null;
+            command.execute(commandArgs, collectionManager, inputReader);
+            return null;
         } catch (ScriptRecursionException e) {
             return "Command Error: " + e.getMessage();
         } catch (Exception e) {
@@ -65,7 +66,8 @@ public class CommandExecutor {
 
             if (input.startsWith("exit")) {
                 break;
+
+                }
             }
         }
     }
-}

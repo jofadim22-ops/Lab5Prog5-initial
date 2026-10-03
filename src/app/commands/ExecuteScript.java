@@ -4,7 +4,6 @@ import exceptions.CommandException;
 import exceptions.InvalidDataException;
 import exceptions.ScriptRecursionException;
 import managers.CollectionManager;
-import managers.CommandExecutor;
 import utils.ConsoleInputReader;
 
 import java.io.File;
@@ -35,9 +34,18 @@ public class ExecuteScript extends AbstractCommand {
                         ConsoleInputReader inputReader)
             throws CommandException, IOException, InvalidDataException {
 
-            validateArgs(args, 1, getName());
+            if (args.length < 1) {
+                throw new CommandException("Usage: execute_script <filename>");
+            }
 
-            File file = new File(args[0].trim());
+            String filename = args[0];
+            File file = new File(filename);
+
+            if (!file.exists()) {
+                System.err.println("Error: File not found: " + filename);
+                return;
+            }
+
             String absolutePath;
             try {
                 absolutePath = file.getCanonicalPath();
@@ -79,8 +87,9 @@ public class ExecuteScript extends AbstractCommand {
 
                 }
 
-                    System.out.println("Script execution completed: " + file.getName());
-                } catch(ScriptRecursionException e){
+                    System.out.println("Script execution completed: " + filename);
+
+                } catch(ScriptRecursionException e) {
                     throw e;
                 } catch(IOException e) {
                     throw new CommandException("Error reading script file: " + e.getMessage());

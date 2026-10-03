@@ -28,7 +28,7 @@ public class Main {
         registry.register("exit", new Exit());
 
         CommandExecutor commandExecutor = new CommandExecutor(
-                registry, collectionManager, new ConsoleInputReader());
+                registry, collectionManager, inputReader);
 
 
         ExecuteScript scriptCmd = (ExecuteScript) registry.getCommand("execute_script");

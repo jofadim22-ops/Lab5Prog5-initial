@@ -5,6 +5,8 @@ import managers.CollectionManager;
 import managers.CommandExecutor;
 import utils.ConsoleInputReader;
 
+import javax.xml.namespace.QName;
+
 public class Main {
     public static void main(String[] args) {
         String filePath = args.length > 0 ? args[0] : "demo.xml";
@@ -22,7 +24,8 @@ public class Main {
         registry.register("count_by_distance", new CountByDistance());
         registry.register("print_field_descending_distance", new PrintFieldDescendingDistance());
         registry.register("remove_greater_key", new RemoveGreaterKey());
-        registry.register("remove_key", new RemoveKey());
+        registry.register("remove_greater", new RemoveGreater());
+        registry.register("remove_lower", new RemoveLower());
         registry.register("save", new Save());
         registry.register("execute_script", new ExecuteScript());
         registry.register("exit", new Exit());
